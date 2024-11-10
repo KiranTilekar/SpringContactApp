@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-//@ComponentScan (basePackages = {"com.yash"})
+@ComponentScan (basePackages = {"com.yash.contactapp.dao", "com.yash.contactapp.service"})
 public class SpringRootConfig {
     //TODO: Services, DAO, DataSource, Email Sender or some other business layer beans
     @Bean
@@ -20,7 +20,7 @@ public class SpringRootConfig {
         ds.setInitialSize(1); // initially we can do 1 connection
         ds.setTestOnBorrow(true); // connection will tested by validation query when borrowed
         ds.setValidationQuery("SELECT 1"); // test query to check connection
-        ds.setDefaultAutoCommit(true); // by default qury will run
+        ds.setDefaultAutoCommit(true); // by default query will run
         return ds;
     }
 }

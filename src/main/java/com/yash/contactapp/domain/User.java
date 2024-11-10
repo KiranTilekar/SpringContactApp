@@ -10,6 +10,7 @@ public class User {
     private String email;
     private String address;
     private String loginName;
+    private String password;
     private Integer role;
     private Integer LoginStatus;
 
@@ -64,6 +65,14 @@ public class User {
 
     public void setLoginName(String loginName) {
         this.loginName = loginName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getRole() {
