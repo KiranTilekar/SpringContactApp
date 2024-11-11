@@ -94,6 +94,12 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = "/admin_users")
+    public String getUserList(Model m) {
+        m.addAttribute("userList", userService.getUserList());
+        return "users"; //JSP
+    }
+
     private void addUserInSession(User u, HttpSession session) {
         session.setAttribute("user", u);
         session.setAttribute("userId", u.getUserId());
