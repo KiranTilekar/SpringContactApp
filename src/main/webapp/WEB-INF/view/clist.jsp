@@ -49,7 +49,7 @@
 
                     <table width="100%">
                         <tr>
-                            <td align="left" >
+                            <td align="right" >
                                 <form action="user_contact_search"/>
                                     <input type="text" name="freeText" value="${param.freeText}" placeholder="Enter Text To Search">
                                     <button>Find</button>
@@ -59,7 +59,7 @@
                         </tr>
                     </table>
 
-                     <form action="<s:url value="/user_bulk_cdelete"/>">
+                     <form action="user_bulk_cdelete">
                      <button>Delete Selected Records</button> <br/><br/>
                         <table border="1">
                             <tr>
