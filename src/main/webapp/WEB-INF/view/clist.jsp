@@ -43,41 +43,57 @@
                     <c:if test="${param.act eq 'sv'}">
                         <p class="success">Contact Saved Successfully</p>
                     </c:if>
-                    <table border="1">
+                    <c:if test="${param.act eq 'del'}">
+                        <p class="success">Contact Deleted Successfully</p>
+                    </c:if>
+
+                    <table width="100%">
                         <tr>
-                            <th>SELECT</th>
-                            <th>CID</th>
-                            <th>NAME</th>
-                            <th>PHONE</th>
-                            <th>EMAIL</th>
-                            <th>ADDRESS</th>
-                            <th>REMARK</th>
-                            <th>ACTION</th>
+                            <td align="left" >
+                                <form action="user_contact_search"/>
+                                    <input type="text" name="freeText" value="${param.freeText}" placeholder="Enter Text To Search">
+                                    <button>Find</button>
+                                </form>
+                                <br>
+                            </td>
                         </tr>
-                        <c:if test="${empty contactList}">
-                            <tr>
-                                <td align="center" colspan="8" class="error">No Records Present</td>
-                            </tr>
-                        </c:if>
-                        <c:forEach var="c" items="${contactList}" varStatus="st">
-                            <tr>
-                                <td align="center"><input type="checkbox" name="cid" value="${c.contactId}"/></td>
-                                <td>${c.contactId}</td>
-                                <td>${c.name}</td>
-                                <td>${c.phone}</td>
-                                <td>${c.email}</td>
-                                <td>${c.address}</td>
-                                <td>${c.remark}</td>
-                                <s:url var="url_del" value="/user/del_contact">
-                                    <s:param name="cid" value="${c.contactId}"/>
-                                </s:url>
-                                <s:url var="url_edit" value="/user/edit_contact">
-                                    <s:param name="cid" value="${c.contactId}"/>
-                                </s:url>
-                                <td><a href="/user_edit_contact">Edit</a> | <a href="/user_del_contact">Delete</a></td>
-                            </tr>
-                        </c:forEach>
                     </table>
+
+                     <form action="<s:url value="/user_bulk_cdelete"/>">
+                     <button>Delete Selected Records</button> <br/><br/>
+                        <table border="1">
+                            <tr>
+                                <th>SELECT</th>
+                                <th>CID</th>
+                                <th>NAME</th>
+                                <th>PHONE</th>
+                                <th>EMAIL</th>
+                                <th>ADDRESS</th>
+                                <th>REMARK</th>
+                                <th>ACTION</th>
+                            </tr>
+                            <c:if test="${empty contactList}">
+                                <tr>
+                                    <td align="center" colspan="8" class="error">No Records Present</td>
+                                </tr>
+                            </c:if>
+                            <c:forEach var="c" items="${contactList}" varStatus="st">
+                                <tr>
+                                    <td align="center"><input type="checkbox" name="cid" value="${c.contactId}"/></td>
+                                    <td>${c.contactId}</td>
+                                    <td>${c.name}</td>
+                                    <td>${c.phone}</td>
+                                    <td>${c.email}</td>
+                                    <td>${c.address}</td>
+                                    <td>${c.remark}</td>
+                                    <td>
+                                        <a href="<c:url value="/user_edit_contact?cid=${c.contactId}"/>">Edit</a> |
+                                        <a href="<c:url value="/user_del_contact?cid=${c.contactId}"/>">Delete</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                     </form>
                 </td>
             </tr>
             <tr>

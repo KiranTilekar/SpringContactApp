@@ -12,5 +12,7 @@ public interface ContactService {
 
     public List<Contact> findUserContact(Integer userId);
 
-    public List<Contact> findUserContacts(Integer userId, String txt);
+    public List<Contact> findUserContact(Integer userId, String txt);
+
+    public Contact findById(Integer contactId);
 }
