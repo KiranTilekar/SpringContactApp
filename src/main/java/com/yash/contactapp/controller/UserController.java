@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -98,6 +96,16 @@ public class UserController {
     public String getUserList(Model m) {
         m.addAttribute("userList", userService.getUserList());
         return "users"; //JSP
+    }
+
+    @RequestMapping(value = "/check_avail")
+    @ResponseBody
+    public String checkAvailability(@RequestParam String username) {
+        if(userService.isUsernameExist(username)){
+            return "This username is already taken. Choose another name";
+        }else{
+            return "Yes! You can take this";
+        }
     }
 
     private void addUserInSession(User u, HttpSession session) {

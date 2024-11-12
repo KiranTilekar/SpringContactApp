@@ -43,6 +43,7 @@ public class ContactController {
                 Integer userId = (Integer) session.getAttribute("userId");
                 c.setUserId(userId);//FK ; logged in userId
                 contactService.save(c);
+                System.out.println("c:"+c);
                 return "redirect:user_clist?act=sv";//redirect user to contact list url
             } catch (Exception e) {
                 e.printStackTrace();

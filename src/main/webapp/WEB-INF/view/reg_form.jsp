@@ -10,7 +10,21 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>User Registration - Contact Application </title>
     <link href="static/css/style.css" rel="stylesheet" type="text/css" />
-    <script src="static/js/jquery-3.2.1.min.js"></script>
+    <script src="static/js/jquery.js"></script>
+
+    <script>
+        $(document).ready(function (){
+            $("#id_check_avail").click(function(){
+                $.ajax({
+                    url : 'check_avail',
+                    data : { username: $("#id_username").val()} ,
+                    success : function(data){
+                        $("#id_res_div").html(data);
+                    }
+                });
+            });
+        });
+    </script>
 
 </head>
 <table border="1" width="80%" align="center">

@@ -62,7 +62,7 @@
                                     <tr>
                                         <td colspan="2" align="right">
                                             <button>Login</button> <br/>
-                                            <a href="#">New User Registration</a>
+                                            <a href="reg_form">New User Registration</a>
                                         </td>
                                     </tr>
                                 </table>
