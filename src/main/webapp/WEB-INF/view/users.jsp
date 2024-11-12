@@ -21,6 +21,21 @@
                 color: #0000FF;
             }
         </style>
+
+        <script src="static/js/jquery.js"></script>
+
+        <script>
+            function changeStatus(uid, lstatus){
+                //alert(userId+", "+loginStatus);
+                $.ajax({
+                    url:'change_status',
+                    data:{userId:uid, loginStatus:lstatus} ,
+                    success: function (data) {
+                        alert(data);
+                    }
+                });
+            }
+        </script>
     </head>
     <body background="${url_bg}">
             <table border="1" width="80%" align="center">

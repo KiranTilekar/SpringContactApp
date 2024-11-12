@@ -55,11 +55,6 @@ public class UserServiceImpl extends BaseDAO implements UserService {
     }
 
     @Override
-    public void changeLoginStatus(Integer userId, Integer loginStatus) {
-
-    }
-
-    @Override
     public boolean isUsernameExist(String username) {
         String sql = "SELECT count(loginName) FROM user WHERE loginName=?";
         Integer count = getJdbcTemplate().queryForObject(sql, new String[]{username}, Integer.class);
@@ -68,6 +63,15 @@ public class UserServiceImpl extends BaseDAO implements UserService {
         }else{
             return false;
         }
+    }
+
+    @Override
+    public void changeLoginStatus(Integer userId, Integer loginStatus) {
+        String sql = "UPDATE user SET loginStatus=:lst WHERE userId=:uid";
+        Map m = new HashMap();
+        m.put("uid", userId);
+        m.put("lst", loginStatus);
+        getNamedParameterJdbcTemplate().update(sql, m);
     }
 
 

@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -105,6 +107,18 @@ public class UserController {
             return "This username is already taken. Choose another name";
         }else{
             return "Yes! You can take this";
+        }
+    }
+
+    @RequestMapping(value = "/change_status")
+    @ResponseBody
+    public String changeLoginStatus(@RequestParam Integer userId, @RequestParam Integer loginStatus) {
+        try {
+            userService.changeLoginStatus(userId, loginStatus);
+            return "SUCCESS: Status Changed";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "ERROR: Unable to Change Status";
         }
     }
 
